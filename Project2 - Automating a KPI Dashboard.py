@@ -55,35 +55,35 @@ def html_to_png(html_file, output_file):
     driver.quit()
 
 
-# Convert HTML files to PNG
+#Converting HTML files to PNG
 html_to_png('total_sales_per_category.html', 'total_sales_per_category.png')
 html_to_png('avg_order_value_per_category.html', 'avg_order_value_per_category.png')
 
 
-# Function to Generate PDF report
+#Function to Generate PDF report
 def generate_pdf_report():
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", size=12)
 
-    # Title
+    #Title
     pdf.set_font("Arial", 'B', 16)
     pdf.cell(200, 10, txt="KPI Dashboard", ln=True, align='C')
 
-    # Total Sales per Category
+    #Total Sales per Category
     pdf.ln(10)
     pdf.set_font("Arial", 'B', 14)
     pdf.cell(200, 10, txt="Total Sales per Category", ln=True)
 
-    # Add image for total sales
+    #Adding image for total sales
     pdf.image('total_sales_per_category.png', x=10, y=pdf.get_y() + 10, w=180)
 
-    # Average Order Value per Category
+    #Average Order Value per Category
     pdf.ln(10)
     pdf.set_font("Arial", 'B', 14)
     pdf.cell(200, 10, txt="Average Order Value per Category", ln=True)
 
-    # Add image for average order value
+    #Adding image for average order value
     pdf.image('avg_order_value_per_category.png', x=10, y=pdf.get_y() + 10, w=180)
 
     pdf.output("kpi_dashboard.pdf")
@@ -95,7 +95,7 @@ def main():
     total_sales_df, avg_order_value_df = calculate_kpis(df)
     create_visualizations(total_sales_df, avg_order_value_df)
 
-    # Convert HTML visualizations to PNG before generating PDF
+    #Converting HTML visualizations to PNG before generating PDF
     html_to_png('total_sales_per_category.html', 'total_sales_per_category.png')
     html_to_png('avg_order_value_per_category.html', 'avg_order_value_per_category.png')
 
